@@ -20,6 +20,7 @@ setup(
     packages=find_packages(),  # Automatically include all packages
     install_requires=requirements,
     python_requires='>=3.8',
+    license="MIT",
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
