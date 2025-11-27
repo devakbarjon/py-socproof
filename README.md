@@ -1,4 +1,4 @@
-# Soc-proof
+# py-socproof
 
 Async Python client for the Partner API (https://soc-proof.su).  
 Easily interact with services, orders, and statuses.
@@ -8,7 +8,7 @@ Easily interact with services, orders, and statuses.
 ## Installation
 
 ```bash
-pip install soc-proof
+pip install py-socproof
 ```
 
 ## Examples
