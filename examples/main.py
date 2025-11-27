@@ -13,14 +13,14 @@ api = SocProofAPI(token=token, cache=cache)
 
 
 async def main():
-    # Load all services (cached)
+    # Load all services (cached), default language of details is "en" - English.
     services = await api.load_services()
 
     # Load all services (uncached)
     services_uncached = await api.load_services(force_reload=True)
 
-    # Load all services with english name, description and time (cached)
-    services_en = await api.load_services(language="en")
+    # Load all services with Russian name, description and time (cached)
+    services_en = await api.load_services(language="ru")
 
     # Add an order, returns order_id
     order_id = await api.add_order(
