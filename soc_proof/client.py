@@ -175,7 +175,7 @@ class SocProofAPI:
 
         return result
 
-    async def get_balance(self):
+    async def get_balance(self) -> AccountBalance:
         """Get account balance."""
         response = await self._post({
             "key": self.token,
