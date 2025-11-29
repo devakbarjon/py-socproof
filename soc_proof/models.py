@@ -12,7 +12,7 @@ class Service:
     refill: bool
     cancel: bool
     category: str = ""
-    description: str = ""  # ru
+    description: str = ""
     time: str = ""
 
 
@@ -22,3 +22,9 @@ class OrderStatus:
     charge: float
     status: str
     remains: int
+
+
+@dataclass
+class AccountBalance:
+    balance: float
+    currency: str

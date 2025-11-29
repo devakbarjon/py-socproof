@@ -3,9 +3,7 @@ class PartnerAPIError(Exception):
     pass
 
 
-# ---------------------------
 # HTTP + Request
-# ---------------------------
 
 class HTTPRequestError(PartnerAPIError):
     """Raised when the HTTP request fails or returns a non-200 status."""
@@ -20,9 +18,7 @@ class InvalidResponseError(PartnerAPIError):
         super().__init__(message)
 
 
-# ---------------------------
 # Service / Description Errors
-# ---------------------------
 
 class ServiceNotFound(PartnerAPIError):
     """Raised when a service with specified ID does not exist."""
@@ -36,9 +32,7 @@ class DescriptionNotFound(PartnerAPIError):
         super().__init__(f"Description for service ID {service_id} not found")
 
 
-# ---------------------------
 # Order Errors
-# ---------------------------
 
 class OrderNotFound(PartnerAPIError):
     """Raised when order details are missing or invalid."""

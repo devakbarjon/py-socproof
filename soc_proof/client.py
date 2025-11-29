@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from typing import List, Dict
 
 from .cache import DataCache
-from .models import Service, OrderStatus
+from .models import Service, OrderStatus, AccountBalance
 from .errors import (
     HTTPRequestError,
     InvalidResponseError,
@@ -85,9 +85,7 @@ class SocProofAPI:
         self.cache.set(cache_key, descriptions, timeout=60 * 60 * 24)
         return descriptions
 
-    # -------------------------
     # Services
-    # -------------------------
     async def load_services(self, language: str = "en", force_reload: bool = False) -> List[Service]:
         """
         Load services with descriptions in selected language.
@@ -176,3 +174,15 @@ class SocProofAPI:
             ))
 
         return result
+
+    async def get_balance(self):
+        """Get account balance."""
+        response = await self._post({
+            "key": self.token,
+            "action": "balance",
+        })
+
+        return AccountBalance(
+            balance=float(response["balance"]),
+            currency=response.get("currency", "")
+        )

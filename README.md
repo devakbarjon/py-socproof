@@ -46,7 +46,7 @@ language="ru" — Russian
 
 # Cache
 
-* AsyncCache stores services and descriptions in memory with optional TTL.
+* Cache stores services and descriptions in memory with optional TTL.
 
 * You can force reload services if API data changes:
 
