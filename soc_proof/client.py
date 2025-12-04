@@ -3,7 +3,11 @@ from bs4 import BeautifulSoup
 from typing import List, Dict
 
 from .cache import DataCache
+
 from .models import Service, OrderStatus, AccountBalance
+
+from .helper import parse_service
+
 from .errors import (
     HTTPRequestError,
     InvalidResponseError,
@@ -18,9 +22,9 @@ class SocProofAPI:
     SERVICES_PAGE_URL = "https://soc-proof.su/services"
     ENG_SERVICES_PAGE_URL = "https://soc-proof.su/en/services"
 
-    def __init__(self, token: str, cache: DataCache):
+    def __init__(self, token: str):
         self.token = token
-        self.cache = cache
+        self.cache = DataCache()
         self.descriptions: Dict[int, dict] = {}
 
     # Internal HTTP methods
@@ -119,7 +123,7 @@ class SocProofAPI:
                 "time": desc["time"]
             })
 
-            services.append(Service(**filtered))
+            services.append(parse_service(filtered))
 
         self.cache.set(cache_key, services, timeout=5 * 60)  # 5 min cache for dynamic data
         return services

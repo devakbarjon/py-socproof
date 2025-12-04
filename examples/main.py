@@ -1,15 +1,12 @@
 # examples
 
 import asyncio
-from soc_proof import SocProofAPI, DataCache, ServiceNotFound, HTTPRequestError
-
-# Initialize cache
-cache = DataCache()
+from soc_proof import SocProofAPI, ServiceNotFound, HTTPRequestError
 
 # Your API token, obtained on "https://soc-proof.su/api"
 token = "YOUR_API_TOKEN"
 
-api = SocProofAPI(token=token, cache=cache)
+api = SocProofAPI(token=token)
 
 
 async def main():
