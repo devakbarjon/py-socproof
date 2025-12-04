@@ -10,7 +10,7 @@ with open("requirements.txt", "r", encoding="utf-8") as f:
 
 setup(
     name="py-socproof",
-    version="1.0.0",
+    version="1.0.1",
     author="devakbarjon",
     author_email="devakbarjon@gmail.com",
     description="Async Python client for Soc-proof API",

@@ -115,10 +115,10 @@ class SocProofAPI:
             desc = descriptions.get(sid, {"description": "", "time": "", "name": "", "category": ""})
 
             filtered = {k: s[k] for k in allowed_fields if k in s}
-            # Overwrite name, category, description, time with language-specific values
+            # Overwrite name, description, time with language-specific values
+
             filtered.update({
                 "name": desc["name"],
-                "category": desc["category"],
                 "description": desc["description"],
                 "time": desc["time"]
             })
