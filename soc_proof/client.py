@@ -36,7 +36,7 @@ class SocProofAPI:
                 async with session.post(self.BASE_URL, data=data) as resp:
                     if resp.status != 200:
                         raise HTTPRequestError(resp.status, await resp.text())
-                    return await resp.json()
+                    return await resp.json(content_type=None)
             except Exception as e:
                 raise HTTPRequestError(-1, str(e))
 
