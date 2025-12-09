@@ -36,8 +36,8 @@ class DescriptionNotFound(PartnerAPIError):
 
 class OrderNotFound(PartnerAPIError):
     """Raised when order details are missing or invalid."""
-    def __init__(self, order_id: int):
-        super().__init__(f"Order {order_id} not found or returned invalid data")
+    def __init__(self, order_id: int, response: dict):
+        super().__init__(f"Order {order_id} not found or returned invalid data: {response}")
 
 
 class OrderStatusError(PartnerAPIError):
@@ -45,3 +45,7 @@ class OrderStatusError(PartnerAPIError):
     def __init__(self, order_id: int, missing_fields: list):
         fields = ", ".join(missing_fields)
         super().__init__(f"Order {order_id} missing fields: {fields}")
+
+
+class NotEnoughFundsError(Exception):
+    pass

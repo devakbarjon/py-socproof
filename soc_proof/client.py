@@ -13,7 +13,7 @@ from .errors import (
     InvalidResponseError,
     ServiceNotFound,
     OrderNotFound,
-    OrderStatusError,
+    OrderStatusError, NotEnoughFundsError, PartnerAPIError
 )
 
 
@@ -148,9 +148,17 @@ class SocProofAPI:
             "quantity": quantity,
         })
 
+        if "error" in response:
+            error_text = response["error"]
+
+            if error_text == "neworder.error.not_enough_funds":
+                raise NotEnoughFundsError("Not enough balance to create order")
+
+            raise PartnerAPIError(error_text)
+
         order_id = response.get("order")
         if not order_id:
-            raise OrderNotFound(-1)
+            raise OrderNotFound(-1, response)
         return str(order_id)
 
     async def get_status(self, orders: list | str) -> List[OrderStatus]:
